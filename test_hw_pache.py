@@ -32,10 +32,12 @@ def test_get_form_login():
         EC.visibility_of_element_located((By.XPATH, "//div[@class='s-modal__inner done']"))
         )
         time.sleep(10)
+        
     
     finally:
         browser.quit()
         print("Browser quit")
+        
 
 
 def test_exit_from_account():
@@ -106,4 +108,17 @@ def test_product_selection():
     finally:
         browser.quit()
         print("Tests passed! Well done!")
+
+
+
+def test_math_1():
+    print("Hi, I'm test_math_1")
+    assert 2 + 5 == 7
+
+
+def test_math_2():
+    print("Holla, I'm test_math_2")
+    assert 3 + 3 == 9
+
+
 
