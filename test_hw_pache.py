@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
+from selenium.common.exceptions import NoSuchElementException
 
 
 def test_get_form_login():
@@ -120,5 +121,24 @@ def test_math_2():
     print("Holla, I'm test_math_2")
     assert 3 + 3 == 9
 
+def test_product_subcategory_element_1():
+    try:
+        browser = webdriver.Chrome()
+        browser.get("https://casenik.com.ua")
+        browser.find_element(By.XPATH, "//a[@href = 'category/Naushniki']")
+        pytest.fail("Не должно быть категрии")
+    finally:
+        browser.quit()
+
+
+def test_product_subcategory_element_2():
+    try:
+        browser = webdriver.Chrome()
+        browser.get("https://casenik.com.ua")
+        with pytest.raises(NoSuchElementException):
+            browser.find_element(By.XPATH, "//a[@href = 'category/Namushniki']")
+            pytest.fail("Не должно быть категрии")
+    finally:
+        browser.quit()
 
 
